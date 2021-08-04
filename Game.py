@@ -9,8 +9,8 @@ class Game:
         pygame.init()
         pygame.display.set_caption("Snake Game by Nishown")
 
-        pygame.mixer.init()
-        self.play_background_music()
+        #pygame.mixer.init()
+        #elf.play_background_music()
 
         self.surface = pygame.display.set_mode((1000, 800))
         self.snake = Snake(self.surface)
@@ -18,17 +18,17 @@ class Game:
         self.apple = Apple(self.surface)
         self.apple.draw()
 
-    def play_background_music(self):
-        pygame.mixer.music.load('resources/bg_music_1.mp3')
+    '''def play_background_music(self):
+        pygame.mixer.music.sound('/home/nishown/Snake-Game/Snake-Game/Resource/bg_music_1.mp3')
         pygame.mixer.music.play(-1, 0)
 
     def play_sound(self, sound_name):
         if sound_name == "crash":
-            sound = pygame.mixer.Sound("resources/crash.mp3")
+            sound = pygame.mixer.Sound("Resource/crash.mp3")
         elif sound_name == 'ding':
-            sound = pygame.mixer.Sound("resources/ding.mp3")
+            sound = pygame.mixer.Sound("Resource/ding.mp3")
 
-        pygame.mixer.Sound.play(sound)
+        pygame.mixer.Sound.play(sound)'''
 
     def reset(self):
         self.snake = Snake(self.surface)
@@ -41,7 +41,7 @@ class Game:
         return False
 
     def render_background(self):
-        bg = pygame.image.load("resources/background.jpg")
+        bg = pygame.image.load("Resource/background.jpg")
         self.surface.blit(bg, (0,0))
 
     def play(self):
@@ -53,14 +53,14 @@ class Game:
 
         # snake eating apple scenario
         if self.is_collision(self.snake.x[0], self.snake.y[0], self.apple.x, self.apple.y):
-            self.play_sound("ding")
+            #self.play_sound("ding")
             self.snake.increase_length()
             self.apple.move()
 
         # snake colliding with itself
         for i in range(3, self.snake.length):
             if self.is_collision(self.snake.x[0], self.snake.y[0], self.snake.x[i], self.snake.y[i]):
-                self.play_sound('crash')
+                #self.play_sound('crash')
                 raise "Collision Occurred"
 
     def display_score(self):
@@ -75,7 +75,7 @@ class Game:
         self.surface.blit(line1, (200, 300))
         line2 = font.render("To play again press Enter. To exit press Escape!", True, (255, 255, 255))
         self.surface.blit(line2, (200, 350))
-        pygame.mixer.music.pause()
+        #pygame.mixer.music.pause()
         pygame.display.flip()
 
     def run(self):
@@ -89,7 +89,7 @@ class Game:
                         running = False
 
                     if event.key == K_RETURN:
-                        pygame.mixer.music.unpause()
+                        #pygame.mixer.music.unpause()
                         pause = False
 
                     if not pause:
